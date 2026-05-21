@@ -3,22 +3,29 @@
 }
 
 :root {
-  --bg: #090b0f;
-  --panel: #101318;
-  --panel-2: #161a21;
-  --panel-3: #1f242d;
-  --line: #2b313d;
-  --line-soft: rgba(255, 255, 255, 0.07);
-  --text: #f3f5f7;
-  --muted: #9ca6b5;
-  --quiet: #6f7887;
-  --orange: #ff8a00;
-  --orange-soft: rgba(255, 138, 0, 0.16);
-  --blue: #4aa3ff;
+  --bg: #f6f7f9;
+  --panel: #ffffff;
+  --panel-2: #fafbfc;
+  --panel-3: #eef0f4;
+  --line: #e2e5ea;
+  --line-soft: #f0f1f3;
+  --text: #363d4d;
+  --muted: #707a90;
+  --quiet: #9aa3b2;
+  --accent: #00bf70;
+  --accent-soft: rgba(0, 191, 112, 0.12);
+  --orange: #0070f3;
+  --orange-soft: #eef6ff;
+  --blue: #0070f3;
+  --cyan: #00bbff;
   --green: #00bf70;
-  --red: #ff4c4c;
-  --purple: #9876ff;
-  --yellow: #f2c15f;
+  --red: #f40e0e;
+  --purple: #7b6aa0;
+  --yellow: #c4963c;
+  --mint: #81e8bd;
+  --sand: #dfbc92;
+  --pink: #faaeae;
+  --pale-cyan: #92cedf;
   --row-h: 36px;
   --sidebar-w: 486px;
   --detail-w: 380px;
@@ -49,7 +56,7 @@ body {
   overflow: hidden;
   background: var(--bg);
   color: var(--text);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Arial, sans-serif;
 }
 
 button,
@@ -68,9 +75,7 @@ button {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background:
-    linear-gradient(180deg, rgba(255, 138, 0, 0.08), rgba(255, 138, 0, 0) 210px),
-    var(--bg);
+  background: var(--bg);
 }
 
 .topbar {
@@ -80,7 +85,7 @@ button {
   gap: 18px;
   padding: 0 22px;
   border-bottom: 1px solid var(--line);
-  background: rgba(11, 13, 17, 0.96);
+  background: var(--panel);
 }
 
 .title-block {
@@ -89,7 +94,7 @@ button {
 
 .eyebrow {
   margin: 0 0 5px;
-  color: var(--orange);
+  color: var(--muted);
   font-family: "Diatype Extended", sans-serif;
   font-size: 10px;
   letter-spacing: 0;
@@ -104,9 +109,9 @@ p {
 }
 
 h1 {
-  font-family: "Diatype Extended", sans-serif;
-  font-size: 18px;
-  font-weight: 400;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 700;
   letter-spacing: 0;
 }
 
@@ -115,7 +120,7 @@ h1 {
 .primary-button {
   border: 1px solid var(--line);
   border-radius: 7px;
-  background: var(--panel-2);
+  background: var(--panel);
   min-height: 30px;
   padding: 6px 11px;
   cursor: pointer;
@@ -124,13 +129,13 @@ h1 {
 .icon-button {
   width: 34px;
   padding: 0;
-  color: var(--orange);
+  color: var(--text);
 }
 
 .text-button:hover,
 .icon-button:hover {
-  border-color: var(--orange);
-  background: var(--orange-soft);
+  border-color: var(--line);
+  background: #f0f1f3;
 }
 
 .text-button.compact {
@@ -140,9 +145,9 @@ h1 {
 }
 
 .primary-button {
-  border-color: var(--orange);
-  background: var(--orange);
-  color: #111;
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
 }
 
 .header-metrics {
@@ -198,7 +203,7 @@ input,
 textarea {
   border: 1px solid var(--line);
   border-radius: 7px;
-  background: #0b0e13;
+  background: var(--panel);
   color: var(--text);
   outline: none;
 }
@@ -233,7 +238,7 @@ body.sidebar-closed .layout {
   min-width: 0;
   overflow: hidden;
   border-right: 1px solid var(--line);
-  background: #0c0f14;
+  background: var(--panel);
 }
 
 .sidebar-heading {
@@ -276,15 +281,15 @@ body.sidebar-closed .layout {
 }
 
 .task-row.selected {
-  box-shadow: inset 3px 0 0 var(--orange);
+  box-shadow: inset 3px 0 0 var(--blue);
 }
 
 .group-row {
   position: sticky;
   top: 0;
   z-index: 2;
-  background: #141820;
-  color: var(--orange);
+  background: #fafbfc;
+  color: var(--muted);
   font-family: "Diatype Extended", sans-serif;
   font-size: 10px;
   text-transform: uppercase;
@@ -310,8 +315,8 @@ body.sidebar-closed .layout {
   overflow: auto;
   position: relative;
   background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px) 0 0 / 72px 100%,
-    #090b0f;
+    linear-gradient(90deg, rgba(0, 0, 0, 0.025) 1px, transparent 1px) 0 0 / 72px 100%,
+    var(--panel);
 }
 
 .timeline {
@@ -320,14 +325,14 @@ body.sidebar-closed .layout {
   z-index: 5;
   height: var(--timeline-h);
   border-bottom: 1px solid var(--line);
-  background: rgba(11, 13, 17, 0.98);
+  background: var(--panel);
 }
 
 .month {
   position: absolute;
   top: 0;
   height: var(--timeline-h);
-  border-left: 1px solid var(--line);
+  border-left: 1px solid #eee;
   color: var(--muted);
 }
 
@@ -364,7 +369,7 @@ body.sidebar-closed .layout {
 }
 
 .row-bg:nth-child(odd) {
-  background: rgba(255, 255, 255, 0.018);
+  background: rgba(0, 0, 0, 0.012);
 }
 
 .group-band {
@@ -373,7 +378,7 @@ body.sidebar-closed .layout {
   right: 0;
   height: var(--row-h);
   border-bottom: 1px solid var(--line);
-  background: rgba(255, 138, 0, 0.08);
+  background: #fafbfc;
 }
 
 .today-line,
@@ -387,18 +392,18 @@ body.sidebar-closed .layout {
 }
 
 .today-line {
-  background: var(--orange);
-  box-shadow: 0 0 16px rgba(255, 138, 0, 0.55);
+  background: var(--red);
+  box-shadow: none;
   z-index: 4;
 }
 
 .milestone-line {
-  background: rgba(255, 255, 255, 0.22);
+  background: #d2d6de;
   z-index: 1;
 }
 
 .gate-line {
-  background: rgba(74, 163, 255, 0.42);
+  background: rgba(0, 112, 243, 0.25);
   z-index: 2;
 }
 
@@ -408,10 +413,10 @@ body.sidebar-closed .layout {
   transform: translateX(-50%);
   max-width: 142px;
   padding: 3px 7px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  border: 1px solid var(--line);
   border-radius: 999px;
-  background: #171b22;
-  color: #dce4ee;
+  background: var(--panel);
+  color: var(--muted);
   font-size: 10px;
   white-space: nowrap;
   overflow: hidden;
@@ -421,18 +426,20 @@ body.sidebar-closed .layout {
 
 .milestone-label.gate {
   border-color: var(--blue);
-  color: #d9edff;
+  background: var(--orange-soft);
+  color: var(--blue);
 }
 
 .milestone-label.drop {
   border-color: var(--red);
-  color: #ffdede;
+  background: #fff0f0;
+  color: var(--red);
 }
 
 .bar {
   position: absolute;
-  height: 26px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  height: 28px;
+  border: 1.5px solid rgba(255, 255, 255, 0.78);
   border-radius: 999px;
   display: flex;
   align-items: center;
@@ -440,14 +447,14 @@ body.sidebar-closed .layout {
   padding: 0 10px;
   overflow: hidden;
   cursor: pointer;
-  color: white;
-  box-shadow: 0 7px 20px rgba(0, 0, 0, 0.24);
+  color: #0f0f10;
+  box-shadow: none;
 }
 
 .bar:hover,
 .bar.selected {
-  border-color: var(--orange);
-  box-shadow: 0 0 0 1px var(--orange), 0 8px 22px rgba(255, 138, 0, 0.22);
+  border-color: var(--blue);
+  box-shadow: 0 0 0 2px var(--blue), 0 2px 8px rgba(0, 112, 243, 0.18);
 }
 
 .bar .bar-label {
@@ -463,19 +470,26 @@ body.sidebar-closed .layout {
   border-radius: 50%;
   flex: 0 0 auto;
   background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 0 0 1px rgba(17, 24, 39, 0.1);
 }
 
-.bar.programme { background: linear-gradient(90deg, #174b79, #255f94); }
-.bar.pf2 { background: linear-gradient(90deg, #9f5a00, #ff8a00); color: #111; }
-.bar.owner { background: linear-gradient(90deg, #343b47, #4a5261); }
-.bar.contract { background: linear-gradient(90deg, #5d3511, #aa6217); }
-.bar.ux { background: repeating-linear-gradient(45deg, #1a1f28, #1a1f28 8px, #222936 8px, #222936 16px); color: var(--muted); }
+.bar.programme,
+.bar.p35 { background: var(--pale-cyan); color: #0f0f10; }
+.bar.p47 { background: var(--purple); color: #fff; }
+.bar.pf2 { background: #5b8fb8; color: #fff; }
+.bar.owner { background: var(--sand); color: #0f0f10; }
+.bar.contract { background: var(--mint); color: #0f0f10; }
+.bar.ux {
+  background: repeating-linear-gradient(45deg, #eef0f4, #eef0f4 8px, #f8f9fa 8px, #f8f9fa 16px);
+  color: var(--muted);
+  border-color: #d2d6de;
+}
 
 .detail-panel {
   min-width: 0;
   overflow: auto;
   border-left: 1px solid var(--line);
-  background: #0c0f14;
+  background: var(--panel);
   padding: 14px;
 }
 
@@ -546,9 +560,9 @@ body.sidebar-closed .layout {
 }
 
 .pill.orange {
-  border-color: var(--orange);
+  border-color: var(--blue);
   background: var(--orange-soft);
-  color: #ffd49a;
+  color: var(--blue);
 }
 
 .owner-grid,
@@ -561,7 +575,7 @@ body.sidebar-closed .layout {
 .function-card {
   border: 1px solid var(--line-soft);
   border-radius: 7px;
-  background: rgba(255, 255, 255, 0.03);
+  background: #fafbfc;
   padding: 9px;
 }
 
@@ -586,7 +600,7 @@ dialog {
 }
 
 dialog::backdrop {
-  background: rgba(0, 0, 0, 0.65);
+  background: rgba(17, 24, 39, 0.42);
 }
 
 .dialog-card {
