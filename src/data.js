@@ -22,6 +22,156 @@
         "Infotainment display: 13.2 inch, 3:4, active area 201.096 x 268.128, 1440x1920."
       ]
     },
+    pf2FeatureList: {
+      sourceFile: "P35 Digital Cockpit_ PF2.0 FeatureList (2).xlsx",
+      sourceType: "Direct JAMA export",
+      producedBy: "Monisha Raju",
+      exportedAt: "2026-05-18T10:10:22Z",
+      protectedSourceColumns: "Columns A-J treated as source export; chart uses derived summaries only.",
+      totals: {
+        totalFeatures: 277,
+        scopedFeatures: 72,
+        p35p47ScopedFeatures: 72,
+        requiredMaturity: "MVP Required"
+      },
+      featureOwnerCounts: [
+        ["Anastasis", 48],
+        ["Matt Wassell", 9],
+        ["Monisha Raju", 6],
+        ["Sebastian S", 5],
+        ["Iulia Brotan", 2],
+        ["Olga / Dominic", 2]
+      ],
+      uiOwnerCounts: [
+        ["Oli", 18],
+        ["New Head (UI Lead)", 14],
+        ["JamesGT", 13],
+        ["Jamie", 11],
+        ["Bruno", 9],
+        ["New Head (Design System)", 4],
+        ["Laura", 3]
+      ],
+      impactCounts: {
+        uiImpact: [["Dont Know", 69], ["No", 3]],
+        uxImpact: [["Yes", 66], ["No", 6]],
+        soundRequired: [["No", 70], ["Yes", 2]],
+        screenImpact: [["N/A", 27], ["ICS", 14], ["Blank", 13], ["IC + ICS", 11], ["IC", 7]]
+      },
+      soundRequiredFeatures: [
+        { id: "MFL-FEAT-59", name: "WTI Chimes", featureOwner: "Matt Wassell" },
+        { id: "MFL-FEAT-60", name: "Acoustic Vehicle Alerting System ( AVAS )", featureOwner: "Matt Wassell" }
+      ],
+      scopedGroups: [
+        {
+          uiOwner: "Oli",
+          count: 18,
+          featureOwners: ["Anastasis", "Monisha Raju", "Sebastian S"],
+          screenImpact: [["ICS", 11], ["N/A", 5], ["IC + ICS", 2]],
+          samples: [
+            "MFL-FEAT-40 Service History & Schedule",
+            "MFL-FEAT-130 DAB",
+            "MFL-FEAT-132 Sirius XM and ML",
+            "MFL-FEAT-133 Bluetooth Music",
+            "MFL-FEAT-134 USB Music",
+            "MFL-FEAT-141 Automatic Playback resumption",
+            "MFL-FEAT-142 Playback controls via Hard switch or Rotaries",
+            "MFL-FEAT-144 Media Cards"
+          ]
+        },
+        {
+          uiOwner: "New Head (UI Lead)",
+          count: 14,
+          featureOwners: ["Anastasis", "Iulia Brotan"],
+          screenImpact: [["IC + ICS", 7], ["IC", 6], ["ICS", 1]],
+          samples: [
+            "MFL-FEAT-67 Ambient Conditions",
+            "MFL-FEAT-68 Energy Information",
+            "MFL-FEAT-69 Energy Flow Visualisation",
+            "MFL-FEAT-70 Gear Indicator",
+            "MFL-FEAT-71 Odometer",
+            "MFL-FEAT-72 Power Meter",
+            "MFL-FEAT-73 International Speedometer",
+            "MFL-FEAT-74 Tachometer"
+          ]
+        },
+        {
+          uiOwner: "JamesGT",
+          count: 13,
+          featureOwners: ["Anastasis"],
+          screenImpact: [["N/A", 13]],
+          samples: [
+            "MFL-FEAT-226 Main Driver Display",
+            "MFL-FEAT-229 Main Central Display",
+            "MFL-FEAT-233 Binnacle Switch Left",
+            "MFL-FEAT-234 Binnacle Switch Right",
+            "MFL-FEAT-235 CCSP",
+            "MFL-FEAT-236 Door Panel Windows, Blinds, etc",
+            "MFL-FEAT-237 Interior Frunk Switch",
+            "MFL-FEAT-238 Gear Selector"
+          ]
+        },
+        {
+          uiOwner: "Jamie",
+          count: 11,
+          featureOwners: ["Anastasis", "Iulia Brotan"],
+          screenImpact: [["N/A", 9], ["IC", 1], ["ICS", 1]],
+          samples: [
+            "MFL-FEAT-161 IC: General Layout",
+            "MFL-FEAT-224 Basic Android Auto Wireless integration",
+            "MFL-FEAT-244 P, R, N, D, Manual, EPB",
+            "MFL-FEAT-245 Seat Controls on Seats",
+            "MFL-FEAT-246 Steering Column Joystick control",
+            "MFL-FEAT-247 Multi-Functional Steering Wheel Controls",
+            "MFL-FEAT-248 Steering Wheel Paddles",
+            "MFL-FEAT-249 Main Steering Wheel Stalk - Left"
+          ]
+        },
+        {
+          uiOwner: "Bruno",
+          count: 9,
+          featureOwners: ["Matt Wassell"],
+          screenImpact: [["Blank", 7], ["ICS", 1], ["IC + ICS", 1]],
+          samples: [
+            "MFL-FEAT-46 Audio Arbitration",
+            "MFL-FEAT-50 Audio Channel Calibration",
+            "MFL-FEAT-1229 Acoustic Space Mode",
+            "MFL-FEAT-1235 Echo Cancellation and Noise Reduction (ECNR)",
+            "MFL-FEAT-59 WTI Chimes",
+            "MFL-FEAT-60 Acoustic Vehicle Alerting System ( AVAS )",
+            "MFL-FEAT-61 ECNR ( Human to Human )",
+            "MFL-FEAT-62 Bluetooth Sync"
+          ]
+        },
+        {
+          uiOwner: "New Head (Design System)",
+          count: 4,
+          featureOwners: ["Monisha Raju"],
+          screenImpact: [["Blank", 4]],
+          samples: [
+            "MFL-FEAT-187 English - UK",
+            "MFL-FEAT-188 English - USA",
+            "MFL-FEAT-200 Simplified Chinese",
+            "MFL-FEAT-201 Spanish"
+          ]
+        },
+        {
+          uiOwner: "Laura",
+          count: 3,
+          featureOwners: ["Anastasis", "Olga / Dominic"],
+          screenImpact: [["Blank", 2], ["IC + ICS", 1]],
+          samples: [
+            "MFL-FEAT-123 IVA: WakeUpWord - Brand Specific",
+            "MFL-FEAT-124 Wakeup by Push to Talk",
+            "MFL-FEAT-176 Light Mode & Automatic Transition"
+          ]
+        }
+      ],
+      notes: [
+        "PF2.0 scope includes 72 P35/P47 Digital Cockpit features, all MVP Required.",
+        "UI Owner values are summarized from the workbook and do not alter columns A-J.",
+        "Workbook UX Owner values are not used to populate the chart UX lane."
+      ]
+    },
     programmeTiming: {
       P35_MY29: [
         {

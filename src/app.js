@@ -14,6 +14,7 @@
     { id: "p35", label: "P35 programme timing", kind: "programme" },
     { id: "p47", label: "P47 programme timing", kind: "programme" },
     { id: "pf2", label: "PF2.0 gates and mitigations", kind: "pf2" },
+    { id: "features", label: "PF2.0 feature scope", kind: "features" },
     { id: "ui", label: "UI owner allocations", kind: "owner" },
     { id: "ux", label: "UX lane - intentionally unpopulated", kind: "ux" },
     { id: "contract", label: "Contract window", kind: "contract" }
@@ -24,6 +25,7 @@
     p35: "#4aa3ff",
     p47: "#9876ff",
     pf2: "#ff8a00",
+    features: "#81e8bd",
     owner: "#f2c15f",
     ux: "#6f7887",
     contract: "#ff8a00",
@@ -129,6 +131,23 @@
       uiOwners: ["Jamie", "Design System Head"],
       summary: DATA.pf2Anchor.notes.slice(1).join(" ")
     });
+
+    for (const group of DATA.pf2FeatureList.scopedGroups) {
+      tasks.push({
+        id: id++,
+        lane: "features",
+        name: "PF2.0 UI scope - " + group.uiOwner + " (" + group.count + " features)",
+        start: DATA.contractWindow.start,
+        end: DATA.pf2Anchor.gates.G4.date,
+        kind: "features",
+        programme: "P35 Digital Cockpit",
+        release: DATA.pf2Anchor.release,
+        phase: DATA.pf2FeatureList.totals.requiredMaturity,
+        uiOwners: [group.uiOwner],
+        summary: featureScopeSummary(group),
+        meta: { featureGroup: group }
+      });
+    }
 
     for (const [family, owners] of Object.entries(DATA.featureFamilies)) {
       tasks.push({
@@ -246,6 +265,12 @@
     return "UI owner allocation from issue #1. UX owner intentionally not populated.";
   }
 
+  function featureScopeSummary(group) {
+    return group.count + " PF2.0 scoped features. Feature owners: " +
+      group.featureOwners.join(", ") + ". Screen impact: " +
+      group.screenImpact.map(([name, count]) => name + " " + count).join(", ") + ".";
+  }
+
   function initControls() {
     for (const lane of lanes) {
       const option = document.createElement("option");
@@ -256,6 +281,7 @@
 
     const ownerNames = new Set();
     Object.values(DATA.featureFamilies).flat().forEach((owner) => ownerNames.add(owner));
+    DATA.pf2FeatureList.scopedGroups.forEach((group) => ownerNames.add(group.uiOwner));
     Object.keys(DATA.owners).forEach((owner) => ownerNames.add(owner));
     [...ownerNames].sort().forEach((owner) => {
       const option = document.createElement("option");
@@ -296,15 +322,23 @@
     els.metrics.innerHTML = [
       metric("P35 releases", DATA.programmeTiming.P35_MY29.length),
       metric("P47 releases", DATA.programmeTiming.P47_MY30.length),
-      metric("UI families", Object.keys(DATA.featureFamilies).length),
+      metric("PF2.0 features", DATA.pf2FeatureList.totals.scopedFeatures),
       metric("PF2.0 G4", fmtDate(DATA.pf2Anchor.gates.G4.date))
     ].join("");
 
     els.anchor.innerHTML = Object.entries(DATA.pf2Anchor.gates)
       .map(([gate, item]) => '<span class="pill orange">' + gate + " " + fmtDate(item.date) + "</span>")
-      .join("") + DATA.pf2Anchor.notes.map((note) => '<span class="pill">' + escapeHtml(note) + "</span>").join("");
+      .join("") +
+      featureListPills().join("") +
+      DATA.pf2Anchor.notes.map((note) => '<span class="pill">' + escapeHtml(note) + "</span>").join("");
 
     els.ownerModel.innerHTML =
+      DATA.pf2FeatureList.scopedGroups.map((group) => {
+        return '<div class="owner-card"><h3>' + escapeHtml(group.uiOwner + " - " + group.count + " PF2.0 features") + '</h3>' +
+          '<p><strong>Feature owners:</strong> ' + escapeHtml(group.featureOwners.join(", ")) + '</p>' +
+          '<p><strong>Screen impact:</strong> ' + escapeHtml(group.screenImpact.map(([name, count]) => name + " " + count).join(", ")) + '</p>' +
+          '<p>' + escapeHtml(group.samples.slice(0, 4).join("; ")) + '</p></div>';
+      }).join("") +
       Object.entries(DATA.featureFamilies).map(([family, owners]) => {
         const note = family === "Media / Audio / Now Playing" ? "Media-related work goes to Oli." : "UX owner: not populated.";
         return '<div class="owner-card"><h3>' + escapeHtml(family) + '</h3><p><strong>UI:</strong> ' + escapeHtml(owners.join(", ")) + '</p><p>' + escapeHtml(note) + '</p></div>';
@@ -316,6 +350,22 @@
     renderFunctionOwners();
   }
 
+  function featureListPills() {
+    const featureList = DATA.pf2FeatureList;
+    return [
+      '<span class="pill orange">PF2.0 scope ' + featureList.totals.scopedFeatures + ' features</span>',
+      '<span class="pill">' + escapeHtml(featureList.totals.requiredMaturity) + '</span>',
+      '<span class="pill">UX impact Yes ' + countLookup(featureList.impactCounts.uxImpact, "Yes") + '</span>',
+      '<span class="pill">UI impact unknown ' + countLookup(featureList.impactCounts.uiImpact, "Dont Know") + '</span>',
+      '<span class="pill">Sound required ' + countLookup(featureList.impactCounts.soundRequired, "Yes") + '</span>'
+    ];
+  }
+
+  function countLookup(pairs, key) {
+    const match = pairs.find(([name]) => name === key);
+    return match ? match[1] : 0;
+  }
+
   function metric(label, value) {
     return '<div class="metric"><span>' + escapeHtml(label) + '</span><strong>' + escapeHtml(String(value)) + "</strong></div>";
   }
@@ -325,7 +375,8 @@
       if (state.lane && task.lane !== state.lane) return false;
       if (state.owner && !task.uiOwners.includes(state.owner)) return false;
       if (state.query) {
-        const haystack = [task.name, task.programme, task.release, task.phase, task.summary, task.uiOwners.join(" ")].join(" ").toLowerCase();
+        const samples = task.meta && task.meta.featureGroup ? task.meta.featureGroup.samples.join(" ") : "";
+        const haystack = [task.name, task.programme, task.release, task.phase, task.summary, task.uiOwners.join(" "), samples].join(" ").toLowerCase();
         if (!haystack.includes(state.query)) return false;
       }
       return true;
@@ -454,12 +505,20 @@
     els.detail.innerHTML =
       '<h2>' + escapeHtml(selected.name) + '</h2>' +
       '<p>' + escapeHtml(selected.summary) + '</p>' +
+      featureGroupDetail(selected) +
       '<div class="key-value"><span>Lane</span><strong>' + escapeHtml(laneLabels[selected.lane] || selected.lane) + '</strong></div>' +
       '<div class="key-value"><span>Window</span><strong>' + fmtDate(selected.start) + ' - ' + fmtDate(selected.end) + '</strong></div>' +
       '<div class="key-value"><span>Release</span><strong>' + escapeHtml(selected.release || "") + '</strong></div>' +
       '<div class="key-value"><span>Phase</span><strong>' + escapeHtml(selected.phase || "") + '</strong></div>' +
       '<div class="key-value"><span>UI owner</span><div>' + owners + '</div></div>' +
       '<div class="key-value"><span>UX owner</span><strong>Not populated</strong></div>';
+  }
+
+  function featureGroupDetail(task) {
+    const group = task.meta && task.meta.featureGroup;
+    if (!group) return "";
+    return '<div class="key-value"><span>Features</span><strong>' + group.count + ' from ' + escapeHtml(DATA.pf2FeatureList.sourceFile) + '</strong></div>' +
+      '<div class="key-value"><span>Examples</span><div>' + escapeHtml(group.samples.slice(0, 6).join("; ")) + '</div></div>';
   }
 
   function selectTask(id) {

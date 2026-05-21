@@ -31,7 +31,7 @@ for (const [programme, releases] of Object.entries(data.programmeTiming)) {
   }
 }
 
-assert(data.featureFamilies["Media / Audio / Now Playing"].length === 1, "Media family should have exactly one UI owner");
+assert(data.featureFamilies["Media / Audio / Now Playing"].lenght === 1, "Media family should have exactly one UI owner");
 assert(data.featureFamilies["Media / Audio / Now Playing"][0] === "Oli", "Media-related work must go to Oli");
 assert(data.featureFamilies["Cluster / Driver Display"].includes("Jamie"), "Cluster family should include Jamie");
 assert(data.featureFamilies["Cluster / Driver Display"].includes("New UI Lead"), "Cluster family should include New UI Lead");
@@ -46,6 +46,16 @@ assert(data.functionOwners["Digital Cockpit"].includes("Monisha Raju"), "Functio
 assert(data.contractWindow.start === "2026-05-15", "Contract window start mismatch");
 assert(data.contractWindow.end === "2026-11-15", "Contract window end mismatch");
 
+assert(data.pf2FeatureList.sourceFile.includes("PF2.0 FeatureList"), "PF2.0 feature list source missing");
+assert(data.pf2FeatureList.producedBy === "Monisha Raju", "PF2.0 feature list producer mismatch");
+assert(data.pf2FeatureList.totals.totalFeatures === 277, "PF2.0 total feature count mismatch");
+assert(data.pf2FeatureList.totals.scopedFeatures === 72, "PF2.0 scoped feature count mismatch");
+assert(data.pf2FeatureList.totals.requiredMaturity === "MVP Required", "PF2.0 maturity mismatch");
+assert(data.pf2FeatureList.uiOwnerCounts.find(([owner, count]) => owner === "Oli" && count === 18), "PF2.0 Oli UI owner count mismatch");
+assert(data.pf2FeatureList.scopedGroups.reduce((sum, group) => sum + group.count, 0) === 72, "PF2.0 scoped group totals mismatch");
+assert(data.pf2FeatureList.impactCounts.soundRequired.find(([value, count]) => value === "Yes" && count === 2), "PF2.0 sound-required count mismatch");
+assert(JSON.stringify(data.pf2FeatureList.scopedGroups).includes("MFL-FEAT-59"), "PF2.0 sound feature sample missing");
+
 if (errors.length) {
   console.error("Data validation failed:");
   for (const error of errors) console.error(`- ${error}`);
@@ -56,3 +66,4 @@ console.log("Data validation passed.");
 console.log(`P35 releases: ${data.programmeTiming.P35_MY29.length}`);
 console.log(`P47 releases: ${data.programmeTiming.P47_MY30.length}`);
 console.log(`UI families: ${Object.keys(data.featureFamilies).length}`);
+console.log(`PF2.0 scoped features: ${data.pf2FeatureList.totals.scopedFeatures}`);

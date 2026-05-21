@@ -477,6 +477,7 @@ body.sidebar-closed .layout {
 .bar.p35 { background: var(--pale-cyan); color: #0f0f10; }
 .bar.p47 { background: var(--purple); color: #fff; }
 .bar.pf2 { background: #5b8fb8; color: #fff; }
+.bar.features { background: var(--mint); color: #0f0f10; }
 .bar.owner { background: var(--sand); color: #0f0f10; }
 .bar.contract { background: var(--mint); color: #0f0f10; }
 .bar.ux {
