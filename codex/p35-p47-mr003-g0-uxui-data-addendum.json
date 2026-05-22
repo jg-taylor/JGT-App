@@ -1,0 +1,188 @@
+{
+  "codexInstruction": {
+    "title": "P35/P47 UI-DX Gantt data addendum from Mallory MR0.0.3 SW Gate0 Review",
+    "sourceDocument": "Mallory Digital Project MR0.0.3 SW Gate0 Review.pdf",
+    "implementationRule": "DATA ONLY UPDATE. Do not alter visual styling, colours, typography, layout density, expansion width, dark/orange treatment, milestone styling, spacing, scroll behaviour or component hierarchy. Only add/adjust workstreams, accountability metadata, tooltips, status flags and requirement/workstream data.",
+    "mustPreserveVisuals": true,
+    "separateUxAndUi": true,
+    "uxOwnerRule": "Do not populate UX owners. Jymy / UX lane remains separate and should be left blank or marked TBC only where the existing app already supports that.",
+    "uiOwnerRule": "UI-DX owner metadata may be added only as data/tooltips/workstream ownership. Do not merge UI and UX responsibility."
+  },
+  "gate0DefinitionOfDone": [
+    "Complete the requirement breakdown.",
+    "Requirement for new or modified function reaches Open or Defined status.",
+    "Epic for carry-over function reaches Open status.",
+    "Complete carry-over Epic creation and fill specific information in the VDR system."
+  ],
+  "mr003ProgrammeAnchor": {
+    "programme": "P35",
+    "release": "MR0.0.3",
+    "target": "P35 NT3.5 LabCar setup",
+    "platformIntent": "PF2.0 / NT3.5 LabCar",
+    "gate0Status": "Reviewed/pass at VFT Gate0 review, but Digital Cockpit delivery scope is not aligned and contains major dependencies.",
+    "gates": {
+      "SW_G0": "2026-05-20",
+      "SW_G1": "2026-06-10",
+      "SW_G2": "2026-07-08",
+      "SW_G3": "2026-09-16",
+      "SW_G4": "2026-11-11",
+      "MRD": "2026-08-14"
+    }
+  },
+  "requirementDashboard": {
+    "totalUniqueIssues": 163,
+    "byMasterDomain": [
+      {"domain": "BC&VM", "open": 79, "defined": 7, "total": 86},
+      {"domain": "CT", "open": 8, "defined": 0, "total": 8},
+      {"domain": "DC", "open": 39, "defined": 0, "total": 39},
+      {"domain": "Infrastructure", "open": 24, "defined": 0, "total": 24},
+      {"domain": "SC", "open": 6, "defined": 0, "total": 6}
+    ]
+  },
+  "newUxUiRelevantWorkstreams": [
+    {
+      "id": "mr003-dc-delivery-scope-alignment",
+      "label": "DC delivery scope alignment",
+      "lane": "Core UI definition",
+      "domain": "Digital Cockpit",
+      "functionOwners": ["Andy YAN", "Alex GU", "Monisha Raju", "Anastasis"],
+      "uiDxAccountability": "Track as the primary PF2.0 UI-DX risk workstream. Add status/risk flag rather than redesigning the Gantt.",
+      "start": "2026-05-20",
+      "end": "2026-06-10",
+      "gateDependency": "Must be clarified before SW G1 because UX/UI negotiated wireframes and NIO handoff depend on this.",
+      "status": "at_risk",
+      "riskLevel": "high",
+      "sourceFacts": [
+        "DC has 39 requirement tickets created.",
+        "Delivery scope was not aligned at Gate0.",
+        "Many DC tickets are placeholders and may not be deliverable in MR0.0.3."
+      ],
+      "tooltipNote": "DC scope not aligned; tickets include placeholders. Clarify deliverable vs mitigation before G1."
+    },
+    {
+      "id": "mr003-screen-interim-solution",
+      "label": "Screen interim solution decision",
+      "lane": "Rig / mule support",
+      "domain": "Digital Cockpit / Hardware dependency",
+      "functionOwners": ["Andy YAN", "Alex GU", "Monisha Raju", "Anastasis"],
+      "uiDxAccountability": "Add a dependency marker only; do not change chart styling. Use as a risk/dependency tooltip or vertical marker.",
+      "start": "2026-05-20",
+      "end": "2026-06-10",
+      "status": "unconfirmed",
+      "riskLevel": "high",
+      "dependencies": [
+        "IC interim route: use NIO RCP as mitigation?",
+        "ICS interim route: use QinLing ICS or NT3 Cetus ICS?",
+        "Screen hardware not available / not confirmed."
+      ],
+      "tooltipNote": "Screen interim solution unresolved. IC/ICS mitigation choice affects UI implementation path and NIO handoff."
+    },
+    {
+      "id": "mr003-prd-uxui-availability-risk",
+      "label": "PRD / UXUI availability risk",
+      "lane": "Core UI definition",
+      "domain": "Digital Cockpit",
+      "functionOwners": ["Monisha Raju", "Andy YAN", "Alex GU"],
+      "uiDxAccountability": "Represent as risk metadata attached to PF2.0 G1, not as a visual redesign.",
+      "start": "2026-05-20",
+      "end": "2026-06-10",
+      "status": "at_risk",
+      "riskLevel": "high",
+      "sourceFacts": [
+        "PRD/UXUI availability was listed as a blocker/reason DC scope may not deliver in MR0.0.3.",
+        "Third party software such as Voice Assistant SDK was also listed as a blocker."
+      ],
+      "tooltipNote": "G1 wireframe/spec delivery is compromised if PRD/UXUI and third-party inputs are not available."
+    },
+    {
+      "id": "mr003-body-control-screens-switches",
+      "label": "Body Control screens & switches UI support",
+      "lane": "Core UI definition",
+      "domain": "Body Control / Digital Cockpit crossover",
+      "functionOwners": ["Ricardo De Carvalho", "Marco Paelicke", "Zheng ZUO", "David LI", "Anastasis"],
+      "uiDxAccountability": "Add as a cross-domain controls/switches workstream. Keep grouped with physical controls/hardpoints; do not create one tiny bar per switch.",
+      "start": "2026-05-20",
+      "end": "2026-06-10",
+      "status": "open_requirements",
+      "requirementCount": 28,
+      "featureAreas": ["Seats", "Windows", "Doors", "Interior light", "Exterior light", "Steering column", "Anti-theft", "Climate control", "Switcher", "Screens & Switches"],
+      "tooltipNote": "Body Control has 28 created requirements; several Screens & Switches records have DC/HMI impact and should be grouped with controls/hardpoints."
+    },
+    {
+      "id": "mr003-thermal-energy-ui-touchpoints",
+      "label": "Thermal & Energy UI touchpoints",
+      "lane": "Core UI definition",
+      "domain": "Thermal & Energy",
+      "functionOwners": ["John Vallins", "Zheng ZUO", "David LI"],
+      "uiDxAccountability": "Track UI-facing energy/range/charging/status surfaces only; do not assume full thermal software ownership.",
+      "start": "2026-05-20",
+      "end": "2026-06-10",
+      "status": "open_requirements",
+      "requirementCount": 27,
+      "featureAreas": ["HVEM", "LVEM", "Thermal systems", "Range estimator", "HV battery management", "HV energy storage", "charging/discharging states"],
+      "tooltipNote": "Thermal & Energy has 27 requirements. UI-DX should track visible energy, range and charging surfaces without taking functional ownership."
+    },
+    {
+      "id": "mr003-motion-cluster-powertrain-surfaces",
+      "label": "Motion / cluster / powertrain surfaces",
+      "lane": "Core UI definition",
+      "domain": "Vehicle Motion",
+      "functionOwners": ["Anil Janarthanan", "Maxime YING", "David LI", "Anastasis"],
+      "uiDxAccountability": "Group with cluster/driver display and controls. Do not split tachometer, speed, gear, TPMS, mode and powertrain status randomly.",
+      "start": "2026-05-20",
+      "end": "2026-06-10",
+      "status": "open_requirements",
+      "requirementCount": 28,
+      "featureAreas": ["Powertrain", "Steering", "Brake", "Gear", "Damping", "Handling mode", "Transmission", "TPMS", "Switches", "Vehicle speed display", "Fuel level", "Fuel range", "Gear shift", "Nose lift", "Tyre pressure monitoring"],
+      "tooltipNote": "Motion has 28 requirements. UI-DX impact is concentrated around cluster, drive modes, gear, TPMS and vehicle-state display surfaces."
+    },
+    {
+      "id": "mr003-connectivity-vehicle-status-dcl",
+      "label": "Connectivity / DCL / vehicle status UI touchpoints",
+      "lane": "PF2 uplift",
+      "domain": "Connectivity / CT",
+      "functionOwners": ["Stelios Gorgoris", "Hongjun MA", "Jiahua FU"],
+      "uiDxAccountability": "Add low-medium priority UI touchpoint workstream. Only visible states, settings or status surfaces need UI-DX input.",
+      "start": "2026-05-20",
+      "end": "2026-07-08",
+      "status": "epics_created",
+      "epicCount": 8,
+      "featureAreas": ["Connect to MAL EU Cloud", "CDF WiFi in UK", "Basic cellular network in CN", "DCL", "IDC", "Vehicle Status", "Special Event Report", "VMS"],
+      "tooltipNote": "CT has 8 Epic VDRs. UI-DX should track only visible connectivity, vehicle status and event-reporting surfaces."
+    },
+    {
+      "id": "mr003-infrastructure-vehicle-moding-status",
+      "label": "Infrastructure / vehicle moding / diagnostic status touchpoints",
+      "lane": "PF2 uplift",
+      "domain": "Infrastructure",
+      "functionOwners": ["Rafael Monteiro", "Hongjun MA", "Ashish ANAND"],
+      "uiDxAccountability": "Add as UI dependency metadata for visible diagnostic/flashing/network/vehicle-mode states. Do not make it a core UI design bar unless app already supports dependency-only tasks.",
+      "start": "2026-05-20",
+      "end": "2026-07-08",
+      "status": "open_requirements",
+      "epicCount": 1,
+      "requirementCount": 24,
+      "featureAreas": ["DCL", "Diagnostic and flashing", "Network", "Occupant sensing", "Low Voltage Power Management", "Vehicle moding", "Flash programming", "Vehicle wakeup and sleep", "Data Closed Loop"],
+      "tooltipNote": "Infrastructure has 1 epic and 24 requirements. UI impact is mainly visible diagnostic, network, LV power and vehicle-mode state handling."
+    }
+  ],
+  "globalGanttRulesForThisAddendum": [
+    "Render workstreams as grouped bars or metadata, not one bar per requirement.",
+    "Do not change colours/styling. Reuse existing colour tokens/classes only.",
+    "Do not add new visual design language.",
+    "If new categories require colour, map to existing palette rather than adding new colours.",
+    "Put risk and function owners in tooltip/detail panel where possible.",
+    "PF2.0 G1 remains the critical UI-DX definition deadline for NIO handoff.",
+    "DC scope alignment and screen interim solution should be visibly flagged as high-risk dependencies."
+  ],
+  "acceptanceCriteria": [
+    "Existing Gantt visual styling is unchanged.",
+    "New workstreams/accountability appear as data only.",
+    "MR0.0.3 DC scope risk is represented.",
+    "Screen interim solution risk is represented.",
+    "Function owners are present in metadata/tooltips.",
+    "UI and UX remain separate.",
+    "No UX owner is assigned by Codex.",
+    "Build/lint is run if available and changed files are summarised."
+  ]
+}
