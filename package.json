@@ -1,0 +1,10 @@
+{
+  "name": "jgt-app",
+  "version": "0.1.0",
+  "private": true,
+  "description": "McLaren P35/P47 planning Gantt and UI ownership view",
+  "scripts": {
+    "dev": "python3 -m http.server 5174",
+    "test": "node scripts/validate-data.js"
+  }
+}

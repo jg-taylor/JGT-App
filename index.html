@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>P35/P47 Gantt Timing and UI Owners</title>
+  <link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <button class="icon-button" id="toggle-sidebar" type="button" aria-label="Toggle task list">☰</button>
+      <div class="title-block">
+        <p class="eyebrow">JGT-App / GitHub issue #1</p>
+        <h1>P35/P47 Gantt Timing and UI Owners</h1>
+      </div>
+      <div class="header-metrics" id="header-metrics"></div>
+    </header>
+
+    <section class="control-bar" aria-label="Chart controls">
+      <label>
+        View
+        <select id="lane-filter">
+          <option value="">All lanes</option>
+        </select>
+      </label>
+      <label>
+        UI owner
+        <select id="owner-filter">
+          <option value="">All UI owners</option>
+        </select>
+      </label>
+      <label class="search-control">
+        Search
+        <input id="search-input" type="search" placeholder="Release, family, owner...">
+      </label>
+      <button class="text-button" id="reset-view" type="button">Reset view</button>
+    </section>
+
+    <main class="layout">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-heading">
+          <span>Task / release</span>
+          <span>UI owner</span>
+        </div>
+        <div id="task-list" class="task-list"></div>
+      </aside>
+
+      <section class="chart-region" aria-label="Gantt chart">
+        <div id="timeline" class="timeline"></div>
+        <div id="chart" class="chart"></div>
+      </section>
+
+      <aside class="detail-panel" id="detail-panel" aria-label="Selected item details">
+        <div class="panel-section selected-detail" id="selected-detail"></div>
+        <div class="panel-section">
+          <div class="panel-title-row">
+            <h2>PF2.0 Anchor</h2>
+            <span class="pill orange">MR0.0.3</span>
+          </div>
+          <div id="anchor-summary" class="anchor-summary"></div>
+        </div>
+        <div class="panel-section">
+          <div class="panel-title-row">
+            <h2>UI Owner Model</h2>
+            <span class="pill">UX blank</span>
+          </div>
+          <div id="owner-model" class="owner-grid"></div>
+        </div>
+        <div class="panel-section">
+          <div class="panel-title-row">
+            <h2>Function Owners</h2>
+            <button class="text-button compact" id="edit-functions" type="button">Edit JSON</button>
+          </div>
+          <div id="function-owners" class="function-owners"></div>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <dialog id="function-dialog">
+    <form method="dialog" class="dialog-card">
+      <h2>Editable function-owner data</h2>
+      <p>Stored in this browser only. Source names marked for verification remain editable.</p>
+      <textarea id="function-json" spellcheck="false"></textarea>
+      <div class="dialog-actions">
+        <button value="cancel" class="text-button" type="submit">Cancel</button>
+        <button id="reset-functions" class="text-button" type="button">Reset</button>
+        <button id="save-functions" class="primary-button" type="button">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="src/data.js"></script>
+  <script src="src/app.js"></script>
+</body>
+</html>
